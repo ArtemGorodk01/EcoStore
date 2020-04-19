@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoStore.Web", "EcoStore.Web\EcoStore.Web.csproj", "{F8FF7BCD-BEBE-42D0-A82C-B0AD8FDE3C6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoStore.Web", "EcoStore.Web\EcoStore.Web.csproj", "{F8FF7BCD-BEBE-42D0-A82C-B0AD8FDE3C6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoStore.EFCore", "EcoStore.EFCore\EcoStore.EFCore.csproj", "{0B04FA24-B37D-4195-AB2E-24B9BE92FA82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoStore.CommonServices", "EcoStore.CommonServices\EcoStore.CommonServices.csproj", "{D93A9E56-D5E4-41D9-9BB9-C303F4147A11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoStore.CommonServices", "EcoStore.CommonServices\EcoStore.CommonServices.csproj", "{D93A9E56-D5E4-41D9-9BB9-C303F4147A11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoStore.EFCore", "EcoStore.EFCore\EcoStore.EFCore.csproj", "{FCCEB4B8-4DD6-4307-B959-CA67CBF30F3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbTest", "DbTest\DbTest.csproj", "{902BD524-24E9-4DA3-865C-50668DC90AF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{F8FF7BCD-BEBE-42D0-A82C-B0AD8FDE3C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8FF7BCD-BEBE-42D0-A82C-B0AD8FDE3C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8FF7BCD-BEBE-42D0-A82C-B0AD8FDE3C6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B04FA24-B37D-4195-AB2E-24B9BE92FA82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B04FA24-B37D-4195-AB2E-24B9BE92FA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B04FA24-B37D-4195-AB2E-24B9BE92FA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B04FA24-B37D-4195-AB2E-24B9BE92FA82}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D93A9E56-D5E4-41D9-9BB9-C303F4147A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D93A9E56-D5E4-41D9-9BB9-C303F4147A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D93A9E56-D5E4-41D9-9BB9-C303F4147A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D93A9E56-D5E4-41D9-9BB9-C303F4147A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCCEB4B8-4DD6-4307-B959-CA67CBF30F3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCCEB4B8-4DD6-4307-B959-CA67CBF30F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCCEB4B8-4DD6-4307-B959-CA67CBF30F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCCEB4B8-4DD6-4307-B959-CA67CBF30F3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{902BD524-24E9-4DA3-865C-50668DC90AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{902BD524-24E9-4DA3-865C-50668DC90AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{902BD524-24E9-4DA3-865C-50668DC90AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{902BD524-24E9-4DA3-865C-50668DC90AF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
