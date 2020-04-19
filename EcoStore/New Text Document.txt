@@ -1,1 +1,0 @@
- Scaffold-DbContext -Connection "Data Source=DESKTOP-KHTVN8V;Initial Catalog=EcoStore;Integrated Security=True" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -ContextDir Context -Context EcoStoreContext -DataAnnotations
