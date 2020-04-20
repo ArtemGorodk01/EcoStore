@@ -2,6 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EcoStore.EFCore.Implementations.UnitOfWork;
+using EcoStore.EFCore.Interfaces.UnitOfWork;
+using EcoStore.Web.Interfaces.Services;
+using EcoStore.Web.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +28,14 @@ namespace EcoStore.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IEcoStoreUnitOfWork, EcoStoreUnitOfWork>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
+
+            services.AddTransient<IAccountService, AccountService>();
             services.AddControllersWithViews();
         }
 
@@ -44,6 +57,7 @@ namespace EcoStore.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
