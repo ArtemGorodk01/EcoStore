@@ -36,6 +36,7 @@ namespace EcoStore.Web
                 });
 
             services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<ICatalogService, CatalogService>();
             services.AddControllersWithViews();
         }
 

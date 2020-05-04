@@ -52,7 +52,7 @@ namespace EcoStore.Web.Services
 
                 return await _unitOfWork.UserRepository.AddUser(newUser);
             }
-            catch(Exception ex)
+            catch
             {
                 return false;
             }

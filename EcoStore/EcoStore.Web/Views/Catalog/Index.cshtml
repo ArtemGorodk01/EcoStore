@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<div class="dropdown show">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Категории
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        @{
+            foreach (Category category in ViewBag.Categories)
+            {
+                <a class="dropdown-item" href="/catalog/@category.Title/1">@category.Title</a>
+            }
+        }
+        <a class="dropdown-item" href="/catalog/all/1">Все</a>
+    </div>
+</div>
+
+<hr/>
+<br/>
+
+<div class="container">
+    <div class="row">
+        @{
+            foreach (Product product in ViewBag.Products)
+            {
+                    <div class="col-sm-4 pb-3 pt-3">
+                       <div class="card">
+                            <div class="card-body">
+                                <center>
+                                <h5 class="card-title">@product.Title</h5>
+                                <img src="https://placehold.it/150x80?text=IMAGE" class="card-img" style="width:100%" alt="Image" />
+                                <a href="#!" class="btn btn-light mt-2">Подробнее</a>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+            }
+        }
+    </div>
+</div>
+
+<hr/>
+<br/>
+
+<div class="container">
+    @{
+        if (ViewBag.Prev)
+        {
+            <a class="btn btn-light" href="/catalog/@ViewBag.CurrentCategory/@(ViewBag.CurrentPage-1)">
+                Предыдущая страница
+            </a>
+        }
+        if (ViewBag.Next)
+        {
+            <a class="btn btn-light" href="/catalog/@ViewBag.CurrentCategory/@(ViewBag.CurrentPage+1)">
+                Следующая страница
+            </a>
+        }
+    }
+</div>
