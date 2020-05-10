@@ -16,6 +16,7 @@ namespace EcoStore.EFCore.Entities
         public int? CategoryId { get; set; }
         public int? GuaranteeMonth { get; set; }
         public string ImageDataBase64 { get; set; }
+        public string Description { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
         [InverseProperty("Product")]

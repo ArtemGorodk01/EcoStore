@@ -82,11 +82,22 @@ namespace EcoStore.EFCore.Implementations.Repositories
                 return false;
             }
 
-            _context.User.Remove(existedUser);
-            _context.Add(user);
+            //_context.User.Remove(existedUser);
+            //_context.Add(user);
+            _context.User.Update(user);
 
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<User> GetUserById(int userId)
+        {
+            return await _context.User.FirstOrDefaultAsync(u => u.Id.Equals(userId));
+        }
+
+        public async Task<int> GetUsersCount()
+        {
+            return await _context.User.CountAsync();
         }
     }
 }

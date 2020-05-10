@@ -38,6 +38,8 @@ namespace EcoStore.Web.Services
             Title = p.Title,
             GuaranteeMonth = p.GuaranteeMonth ?? 0,
             Price = p.Price ?? 0,
+            Description = p.Description,
+            ImageData = $"data:image/jpeg;base64,{p.ImageDataBase64}",
             }).ToList();
         }
 
@@ -51,6 +53,8 @@ namespace EcoStore.Web.Services
                 Title = p.Title,
                 GuaranteeMonth = p.GuaranteeMonth ?? 0,
                 Price = p.Price ?? 0,
+                Description = p.Description,
+                ImageData = $"data:image/jpeg;base64,{p.ImageDataBase64}",
             }).ToList();
         }
     }

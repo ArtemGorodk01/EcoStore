@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Доставка";
+}
+
+<div class="container row">
+    <h3 class="col-sm-3">Доставка</h3>
+    @if (!ViewBag.All)
+    {
+        <a class="btn btn-outline-dark ml-3 mt-1 mb-1 col-sm-3" href="~/delivery/list/1/true">Все</a>
+    }
+    else
+    {
+        <a class="btn btn-outline-dark ml-3 mt-1 mb-1 col-sm-3" href="~/delivery/list/1/false">Только необработанные</a>
+    }
+</div>
+<br/>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id доставки</td>
+            <td>Дата доставки</td>
+            <td>Действия</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (EcoStore.EFCore.Entities.Delivery delivery in ViewBag.List)
+            {
+                <tr>
+                    <td>@delivery.Id</td>
+                    <td>@delivery.DeliveryDate</td>
+                    <td>
+                        <a href="~/delivery/@delivery.Id" class="btn btn-outline-info mr-2">Детали</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<hr />
+@{
+    for (int i = 1; i <= ViewBag.Pages; i++)
+    {
+        if (ViewBag.All)
+        {
+            <a href="~/delivery/list/@i/true" class="btn btn-outline-dark">@i</a>
+        }
+        else
+        {
+            <a href="~/delivery/list/@i/false" class="btn btn-outline-dark">@i</a>
+        }
+    }
+}

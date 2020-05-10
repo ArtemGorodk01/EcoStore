@@ -33,6 +33,8 @@ namespace EcoStore.EFCore.Context
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-KHTVN8V;Initial Catalog=EcoStore;Integrated Security=True");
+                optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                optionsBuilder.EnableSensitiveDataLogging(false);
             }
         }
 
@@ -40,12 +42,12 @@ namespace EcoStore.EFCore.Context
         {
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<Delivery>(entity =>
             {
-                entity.HasNoKey();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Order)
                     .WithMany()
@@ -55,7 +57,7 @@ namespace EcoStore.EFCore.Context
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.UserdNavigation)
                     .WithMany(p => p.Order)
@@ -65,7 +67,7 @@ namespace EcoStore.EFCore.Context
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Product)
@@ -75,7 +77,7 @@ namespace EcoStore.EFCore.Context
 
             modelBuilder.Entity<ProductOrder>(entity =>
             {
-                entity.HasNoKey();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Order)
                     .WithMany()
@@ -115,12 +117,12 @@ namespace EcoStore.EFCore.Context
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<UserMarkProduct>(entity =>
             {
-                entity.HasNoKey();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.Product)
                     .WithMany()

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Продукты";
+}
+
+<h3>Продукты</h3>
+<form action="~/product/search">
+    <div class="row">
+        <input class="form-control col-sm-8" name="title" />
+        <input type="submit" class="btn btn-outline-dark ml-2" value="Поиск" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Название</td>
+            <td>Действия</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (EcoStore.EFCore.Entities.Product product in ViewBag.List)
+            {
+                <tr>
+                    <td>@product.Title</td>
+                    <td>
+                        <a href="~/product/edit/@product.Id" class="btn btn-outline-info mr-2">Изменить</a>
+                        <a href="~/product/delete/@product.Id" class="btn btn-outline-danger" onclick="alert('Подтвердите действие');">Удалить</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a href="~/product/add" class="btn btn-outline-success">Добавить</a>
+<hr />
+@{
+    for (int i = 1; i <= ViewBag.Pages; i++)
+    {
+        <a href="~/product/list/@i" class="btn btn-outline-dark">@i</a>
+    }
+}

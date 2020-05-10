@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Пользователи";
+}
+
+<h3>Пользователи</h3>
+    <form action="~/account/search/">
+        <div class="row">
+            <input class="form-control col-sm-8" name="login" />
+            <input type="submit" class="btn btn-outline-dark ml-2" value="Поиск" />
+        </div>
+    </form>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Логин</td>
+            <td>Действия</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (string login in ViewBag.List)
+            {  
+                <tr>
+                    <td>@login</td>
+                    <td>
+                        <a href="~/account/editUser/@login" class="btn btn-outline-info mr-2">Изменить</a>
+                        <a href="~/account/deleteUser/@login" class="btn btn-outline-danger" onclick="alert('Подтвердите действие');">Удалить</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a href="~/account/add" class="btn btn-outline-success">Добавить</a>
+<hr/>
+@{
+    for (int i = 1; i <= ViewBag.Pages; i++)
+    {
+        <a href="~/account/list/@i" class="btn btn-outline-dark">@i</a>
+    }
+}

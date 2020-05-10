@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "Детали заказа";
+}
+
+<h3>Детали заказа</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Продукт</td>
+            <td>Количество</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (KeyValuePair<string, int> pa in ViewBag.Dictionary)
+            {
+                <tr>
+                    <td>@pa.Key</td>
+                    <td>@pa.Value</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<hr/>
+<h4>Пользователь</h4>
+<table class="table">
+    <tbody>
+        <tr>
+            <td>Логин/E-mail</td>
+            <td>@ViewBag.User.Login</td>
+        </tr>
+        <tr>
+            <td>Имя</td>
+            <td>@ViewBag.User.FirstName @ViewBag.User.LastName</td>
+        </tr>
+        <tr>
+            <td>Телефон</td>
+            <td>@ViewBag.User.Phone</td>
+        </tr>
+    </tbody>
+</table>
+
+<br/>
+
+@if(ViewBag.Order.Status)
+{
+    <center>
+        <h3>Заказ уже обработан.</h3>
+    </center>
+}
+else
+{
+    <div class="container row">
+        <a href="~/order/cancel/@ViewBag.Order.Id" class="btn btn-outline-danger col-sm-3 ml-2">Отменить заказ</a>
+        <a href="~/delivery/create/@ViewBag.Order.Id" class="btn btn-outline-success col-sm-3 ml-2">Оформить доставку</a>
+    </div>
+}
+
+<br/>
+
+<div>
+    <a class="btn btn-outline-dark ml-2" href="~/order/list/1/false">Вернуться к списку заказов</a>
+</div>

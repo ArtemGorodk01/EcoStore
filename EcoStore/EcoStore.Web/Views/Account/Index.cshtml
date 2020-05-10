@@ -1,0 +1,60 @@
+﻿@model EcoStore.Web.Models.AccountInfo
+
+@{
+    ViewData["Title"] = "Мой аккаунт";
+}
+
+        <div class="container">
+        <h4>Личные данные</h4>
+        <a class="btn btn-danger text-light float-right" href="~/account/logout/">Выйти</a>
+        </div>
+<hr/>
+        <div>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Login)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Login)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Phone)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Country)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Country)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Region)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Region)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+            </dl>
+        </div>
+        <div class="mt-3">
+            <a class="btn btn-dark text-light" href="~/account/edit/">Изменить</a>
+        </div>

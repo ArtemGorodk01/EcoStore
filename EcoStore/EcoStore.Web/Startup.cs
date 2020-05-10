@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EcoStore.EFCore.Context;
 using EcoStore.EFCore.Implementations.UnitOfWork;
 using EcoStore.EFCore.Interfaces.UnitOfWork;
 using EcoStore.Web.Interfaces.Services;
@@ -28,6 +29,17 @@ namespace EcoStore.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<EcoStoreContext>(c =>
+            c.UseQueryTrackingBehavior(Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking));
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(600);
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddSingleton<IEcoStoreUnitOfWork, EcoStoreUnitOfWork>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
@@ -37,6 +49,11 @@ namespace EcoStore.Web
 
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<ICatalogService, CatalogService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<IDeliveryService, DeliveryService>();
             services.AddControllersWithViews();
         }
 
@@ -60,6 +77,8 @@ namespace EcoStore.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

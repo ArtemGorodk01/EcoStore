@@ -7,6 +7,8 @@ namespace EcoStore.EFCore.Entities
 {
     public partial class Delivery
     {
+        [Key]
+        public int Id { get; set; }
         public int? OrderId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? DeliveryDate { get; set; }

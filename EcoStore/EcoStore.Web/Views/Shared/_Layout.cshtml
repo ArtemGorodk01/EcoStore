@@ -1,17 +1,18 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EcoStore.Web</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EcoStore.Web</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ecoteria</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,14 +20,20 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Catalog/1">Catalog</a>
+                            <a class="nav-link text-dark" href="/Catalog/1">Каталог</a>
                         </li>
                     </ul>
                 </div>
             </div>
+            <a href="/account/index">
+                <img src="~/user_icon_004.jpg" style="width:35px;height:35px;"/>
+            </a>
+            <a href="/cart/index">
+                <img src="~/cart-2.png" style="width:50px;height:50px;" />
+            </a>
         </nav>
     </header>
     <div class="container">
@@ -37,7 +44,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - EcoStore.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Ecoteria - developed by Artem Gorodko
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

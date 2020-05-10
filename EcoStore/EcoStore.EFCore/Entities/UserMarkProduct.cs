@@ -7,6 +7,9 @@ namespace EcoStore.EFCore.Entities
 {
     public partial class UserMarkProduct
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public int Id { get; set; }
         public int? ProductId { get; set; }
         public int? UserId { get; set; }
         public int? Mark { get; set; }

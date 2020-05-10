@@ -10,8 +10,13 @@ namespace EcoStore.Web.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize(Roles = "Admin, User")]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Admin()
         {
             return View();
         }

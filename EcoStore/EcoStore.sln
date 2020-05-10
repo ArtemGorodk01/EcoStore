@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoStore.Web", "EcoStore.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoStore.CommonServices", "EcoStore.CommonServices\EcoStore.CommonServices.csproj", "{D93A9E56-D5E4-41D9-9BB9-C303F4147A11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoStore.EFCore", "EcoStore.EFCore\EcoStore.EFCore.csproj", "{FCCEB4B8-4DD6-4307-B959-CA67CBF30F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcoStore.EFCore", "EcoStore.EFCore\EcoStore.EFCore.csproj", "{FCCEB4B8-4DD6-4307-B959-CA67CBF30F3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbTest", "DbTest\DbTest.csproj", "{902BD524-24E9-4DA3-865C-50668DC90AF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbTest", "DbTest\DbTest.csproj", "{902BD524-24E9-4DA3-865C-50668DC90AF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

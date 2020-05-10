@@ -4,6 +4,7 @@
     {
         Admin = 1,
         User = 2,
-        None = 3,
+        Delivery = 3,
+        None = 4,
     }
 }

@@ -12,6 +12,8 @@ namespace EcoStore.Web.Services
 {
     public class AccountService : IAccountService
     {
+        private const int _viewUserAmount = 20;
+
         private IEcoStoreUnitOfWork _unitOfWork;
 
         public AccountService(IEcoStoreUnitOfWork unitOfWork)
@@ -29,13 +31,9 @@ namespace EcoStore.Web.Services
             //TODO Add model validation
             try
             {
-                var users = await _unitOfWork.UserRepository.GetAllUsers();
-                var id = users == null || users.Count == 0 ?
-                         1 :
-                         users.Max(u => u.Id) + 1;
-                var newUser = new User
+                var newUser = new EFCore.Entities.User
                 {
-                    Id = id,
+                    Id = 0,
                     Role = (int)role,
                     Login = user.Login,
                     Phone = user.Phone,
@@ -91,6 +89,7 @@ namespace EcoStore.Web.Services
 
             return new AccountInfo
             {
+                Id = user.Id,
                 Login = user.Login,
                 Phone = user.Phone,
                 FirstName = user.FirstName,
@@ -99,6 +98,51 @@ namespace EcoStore.Web.Services
                 Region = user.Region,
                 Address = user.Address,
             };
+        }
+
+        public async Task UpdateUser(AccountInfo accountInfo)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserByLogin(accountInfo.Login);
+            user.Phone = accountInfo.Phone;
+            user.FirstName = accountInfo.FirstName;
+            user.LastName = accountInfo.LastName;
+            user.Country = accountInfo.Country;
+            user.Region = accountInfo.Region;
+            user.Address = accountInfo.Address;
+            await _unitOfWork.UserRepository.UpdateUser(user);
+        }
+
+        public async Task UpdateUser(EFCore.Entities.User user)
+        {
+            await _unitOfWork.UserRepository.UpdateUser(user);
+        }
+
+        public async Task<List<string>> GetUsers(int page)
+        {
+            var users = await _unitOfWork.UserRepository.GetAllUsers();
+            return users.Skip((page - 1) * _viewUserAmount).Take(_viewUserAmount)
+                        .Select(u => u.Login).ToList();
+        }
+
+        public async Task<int> GetPagesCount()
+        {
+            return (await _unitOfWork.UserRepository.GetUsersCount())/_viewUserAmount + 1;
+        }
+
+        public async Task<EFCore.Entities.User> GetUserByLogin(string login)
+        {
+            return await _unitOfWork.UserRepository.GetUserByLogin(login);
+        }
+
+        public async Task<bool> AddUser(EFCore.Entities.User user)
+        {
+            user.RegistrationDate = DateTime.Now;
+            return await _unitOfWork.UserRepository.AddUser(user);
+        }
+
+        public async Task<bool> DeleteUser(string login)
+        {
+            return await _unitOfWork.UserRepository.DeleteUser(login);
         }
     }
 }

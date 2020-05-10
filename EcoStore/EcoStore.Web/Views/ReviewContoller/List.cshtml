@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Отзывы";
+}
+
+<h3>Отзывы</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Отзыв</td>
+            <td>Действия</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (EcoStore.EFCore.Entities.UserMarkProduct review in ViewBag.List)
+            {
+                <tr>
+                    <td>@review.Mark @review.Review</td>
+                    <td>
+                        <a href="~/review/delete/@review.Id" class="btn btn-outline-danger" onclick="alert('Подтвердите действие');">Удалить</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<hr />
+@{
+    for (int i = 1; i <= ViewBag.Pages; i++)
+    {
+        <a href="~/account/list/@i" class="btn btn-outline-dark">@i</a>
+    }
+}
+
+

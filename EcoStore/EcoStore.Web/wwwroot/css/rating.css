@@ -1,0 +1,33 @@
+﻿.rating_block {
+    width: 125px;
+    height: 25px;
+}
+
+    .rating_block input[type="radio"] {
+        display: none;
+    }
+
+.label_rating {
+    float: right;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(/rating.png) no-repeat 50% 0;
+    cursor: pointer;
+}
+
+.rating_block .label_rating:hover,
+.rating_block .label_rating:hover ~ .label_rating,
+.rating_block input[type="radio"]:checked ~ .label_rating{
+    background-position: 50% -25px;
+}
+
+.display_rating {
+    float: right;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(/rating.png) no-repeat 50% 0;
+    cursor: pointer;
+    background-position: 50% -25px;
+}

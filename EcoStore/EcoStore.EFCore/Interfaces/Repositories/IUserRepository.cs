@@ -13,5 +13,7 @@ namespace EcoStore.EFCore.Interfaces.Repositories
         Task<bool> AddUser(User user);
         Task<bool> UpdateUser(User user);
         Task<bool> DeleteUser(string login);
+        Task<User> GetUserById(int userId);
+        Task<int> GetUsersCount();
     }
 }

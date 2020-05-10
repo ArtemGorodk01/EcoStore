@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Заказы";
+}
+
+    <div class="container row">
+        <h3 class="col-sm-3">Заказы</h3>
+        @if (ViewBag.NotProcessed)
+        {
+            <a class="btn btn-outline-dark ml-3 mt-1 mb-1 col-sm-3" href="~/order/list/1/false">Все</a>
+        }
+        @if (!ViewBag.NotProcessed)
+        {
+            <a class="btn btn-outline-dark ml-3 mt-1 mb-1 col-sm-3" href="~/order/list/1/true">Только необработанные</a>
+        }
+    </div>
+<br/>
+<form action="~/order/search/">
+    <div class="row">
+        <input class="form-control col-sm-8" name="login" />
+        <input type="submit" class="btn btn-outline-dark ml-2" value="Поиск" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id заказа</td>
+            <td>Дата заказа</td>
+            <td>Действия</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (EcoStore.EFCore.Entities.Order order in ViewBag.List)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.OrderDate</td>
+                    <td>
+                        <a href="~/order/@order.Id" class="btn btn-outline-info mr-2">Детали</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<hr />
+@{
+    for (int i = 1; i <= ViewBag.Pages; i++)
+    {
+        if (ViewBag.NotProcessed)
+        {
+         <a href="~/order/list/@i/true" class="btn btn-outline-dark">@i</a>
+        }
+        else 
+        { 
+<a href="~/order/list/@i/false" class="btn btn-outline-dark">@i</a>
+        }
+      }
+    }
