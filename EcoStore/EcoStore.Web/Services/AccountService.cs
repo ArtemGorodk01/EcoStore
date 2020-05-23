@@ -1,8 +1,10 @@
-﻿using EcoStore.EFCore.Entities;
+﻿using EcoStore.CommonServices.MailSender;
+using EcoStore.EFCore.Entities;
 using EcoStore.EFCore.Interfaces.UnitOfWork;
 using EcoStore.Web.Enums;
 using EcoStore.Web.Interfaces.Services;
 using EcoStore.Web.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +50,14 @@ namespace EcoStore.Web.Services
                     Gender = (int)user.Gender,
                 };
 
-                return await _unitOfWork.UserRepository.AddUser(newUser);
+                if (await _unitOfWork.UserRepository.AddUser(newUser))
+                {
+                    var addedUser = await _unitOfWork.UserRepository.GetUserByLogin(user.Login);
+                    await SmtpWorker.SendEmailAsync(newUser.Login, "Активация аккаунта", $"Для активации аккаунта перейдите по ссылке https://localhost:44319/Account/Activate/{newUser.Id}");
+                    return true;
+                }
+
+                return false;
             }
             catch
             {
@@ -137,12 +146,20 @@ namespace EcoStore.Web.Services
         public async Task<bool> AddUser(EFCore.Entities.User user)
         {
             user.RegistrationDate = DateTime.Now;
+            await SmtpWorker.SendEmailAsync(user.Login, "Shalom", "hi");
             return await _unitOfWork.UserRepository.AddUser(user);
         }
 
         public async Task<bool> DeleteUser(string login)
         {
             return await _unitOfWork.UserRepository.DeleteUser(login);
+        }
+
+        public async Task<bool> ActivateUser(int userId)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserById(userId);
+            user.Status = 1;
+            return await _unitOfWork.UserRepository.UpdateUser(user);
         }
     }
 }

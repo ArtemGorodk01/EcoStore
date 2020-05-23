@@ -20,5 +20,6 @@ namespace EcoStore.Web.Interfaces.Services
         Task<int> GetPagesCount();
         Task<bool> AddUser(EFCore.Entities.User user);
         Task<bool> DeleteUser(string login);
+        Task<bool> ActivateUser(int userId);
     }
 }

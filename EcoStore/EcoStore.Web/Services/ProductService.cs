@@ -19,6 +19,11 @@ namespace EcoStore.Web.Services
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<List<EFCore.Entities.Product>> GetProducts()
+        {
+            return await _unitOfWork.ProductRepository.GetProducts();
+        }
+
         public async Task<Models.Product> GetProductById(int productId)
         {
             var product = await _unitOfWork.ProductRepository.GetProductById(productId);

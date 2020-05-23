@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using EcoStore.CommonServices.MailSender;
 using EcoStore.EFCore.Interfaces.UnitOfWork;
 using EcoStore.Web.Enums;
 using EcoStore.Web.Interfaces.Services;
@@ -123,6 +124,12 @@ namespace EcoStore.Web.Controllers
             var role = await _accountService.Login(model);
             if (!role.Equals(Role.None))
             {
+                var user = await _accountService.GetUserByLogin(model.Login);
+                if (user.Status == null || user.Status == 0)
+                {
+                    ModelState.AddModelError("Info", "Аккаунт не активирован.");
+                    return View(model);
+                }
                 await Authenticate(model.Login, role);
                 if (role.Equals(Role.Admin))
                 {
@@ -146,16 +153,26 @@ namespace EcoStore.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)
         {
+            if (model.Password != null && model.Password.Length < 5)
+            {
+                ModelState.AddModelError("Password", "Пароль должен содержать как минимум 6 символов");
+                return View(model);
+            }
+            if (model.Login != null && !model.Login.Contains('@'))
+            {
+                ModelState.AddModelError("Login", "Неверный логин");
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 if (await _accountService.AddNewAccount(model, Role.User))
                 {
-                    await Authenticate(model.Login, Role.User);
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.Address = model.Login;
+                    return View("Confirm");
                 }
             }
 
-            ModelState.AddModelError("", "Некорректные данные");
             return View(model);
         }
 
@@ -179,6 +196,13 @@ namespace EcoStore.Web.Controllers
 
             ViewBag.List = await _accountService.GetUsers(page);
             return View();
+        }
+
+        [Route("[controller]/[action]/{userId}")]
+        public async Task<IActionResult> Activate(int userId)
+        {
+            await _accountService.ActivateUser(userId);
+            return Redirect("~/account/login");
         }
 
         private async Task Authenticate(string userName, Role role)

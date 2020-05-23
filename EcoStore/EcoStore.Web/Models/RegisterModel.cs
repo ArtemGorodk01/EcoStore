@@ -7,6 +7,8 @@ namespace EcoStore.Web.Models
     public class RegisterModel
     {
         [Required(ErrorMessage = "Не указан логин")]
+        [RegularExpression(@"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$",
+         ErrorMessage = "Неправильный логин")]
         [StringLength(200)]
         public string Login { get; set; }
 
@@ -20,6 +22,8 @@ namespace EcoStore.Web.Models
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Не указан телефон")]
+        [RegularExpression(@"^[0-9]{9}$",
+         ErrorMessage = "Укажите телефон в формате XXNNNNNNN, где XX - код, NNNNNNN - номер телефона")]
         [StringLength(20)]
         public string Phone { get; set; }
 

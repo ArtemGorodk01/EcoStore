@@ -13,6 +13,11 @@ namespace EcoStore.EFCore.Implementations.Repositories
     {
         private EcoStoreContext _context = new EcoStoreContext();
 
+        public async Task<List<Product>> GetProducts()
+        {
+            return await _context.Product.ToListAsync();
+        }
+
         public async Task<List<Product>> GetProducts(int page, int count)
         {
             if (page < 1 || count < 1)

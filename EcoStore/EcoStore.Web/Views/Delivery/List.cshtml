@@ -20,7 +20,8 @@
         <tr>
             <td>Id доставки</td>
             <td>Дата доставки</td>
-            <td>Действия</td>
+            <td>Адрес</td>
+            <td>Детали</td>
         </tr>
     </thead>
     <tbody>
@@ -30,9 +31,8 @@
                 <tr>
                     <td>@delivery.Id</td>
                     <td>@delivery.DeliveryDate</td>
-                    <td>
-                        <a href="~/delivery/@delivery.Id" class="btn btn-outline-info mr-2">Детали</a>
-                    </td>
+                    <td>@delivery.Address</td>
+                    <td>@delivery.Details</td>
                 </tr>
             }
         }

@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EcoStore.CommonServices\EcoStore.CommonServices.csproj" />
     <ProjectReference Include="..\EcoStore.EFCore\EcoStore.EFCore.csproj" />
   </ItemGroup>
 

@@ -36,6 +36,7 @@ namespace EcoStore.EFCore.Entities
         [Column(TypeName = "datetime")]
         public DateTime? RegistrationDate { get; set; }
         public int? Gender { get; set; }
+        public int? Status { get; set; }
 
         [InverseProperty("UserdNavigation")]
         public virtual ICollection<Order> Order { get; set; }

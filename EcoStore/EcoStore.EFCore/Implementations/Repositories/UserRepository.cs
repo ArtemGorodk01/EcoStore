@@ -26,9 +26,10 @@ namespace EcoStore.EFCore.Implementations.Repositories
                 return false;
             }
 
-            _context.User.Add(user);
+            var entity = _context.User.Add(user);
 
             await _context.SaveChangesAsync();
+            entity.State = EntityState.Detached;
             return true;
         }
 
@@ -84,9 +85,10 @@ namespace EcoStore.EFCore.Implementations.Repositories
 
             //_context.User.Remove(existedUser);
             //_context.Add(user);
-            _context.User.Update(user);
+            var entity = _context.User.Update(user);
 
             await _context.SaveChangesAsync();
+            entity.State = EntityState.Detached;
             return true;
         }
 

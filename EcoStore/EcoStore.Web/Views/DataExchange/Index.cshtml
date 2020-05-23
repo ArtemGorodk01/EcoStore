@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Обмен данными";
+}
+
+<div>
+    <h3>Экспорт данных о продуктах</h3>
+</div>
+<br />
+<form asp-action="Export" asp-controller="DataExchange" method="get">
+    <div class="form-group">
+        <label>Xml</label>
+        <input type="radio" name="fileType" value="Xml">
+    </div>
+    <div class="form-group">
+        <label>Json</label>
+        <input type="radio" name="fileType" value="Json" checked />
+    </div>
+    <div class="form-group">
+        <label>Doc</label>
+        <input type="radio" name="fileType" value="Doc" checked />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Export" class="btn btn-outline-primary" />
+    </div>
+</form>
+<hr/>
+<div>
+    <h3>Импорт данных о продуктах</h3>
+</div>
+<form asp-action="Import" asp-controller="DataExchange" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <input type="file" name="uploadedFile" class="form-control-file" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Upload" class="btn btn-outline-primary" />
+    </div>
+</form>

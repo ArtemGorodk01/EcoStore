@@ -6,6 +6,7 @@ namespace EcoStore.EFCore.Interfaces.Repositories
 {
     public interface IProductRepository
     {
+        Task<List<Product>> GetProducts();
         Task<List<Product>> GetProducts(int page, int count);
         Task<List<Product>> GetProductsByCategory(string categoryName, int page, int count);
         Task<Product> GetProductById(int productId);
